@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:04:20 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/01 16:16:33 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/02 11:45:16 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
+// void	*ft_calloc(size_t count, size_t size)
+// {
+// 	void	*ptr;
 
-	ptr = malloc(count * size);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, size * count);
-	return (ptr);
-}
+// 	ptr = malloc(count * size);
+// 	if (ptr == NULL)
+// 		return (NULL);
+// 	ft_bzero(ptr, size * count);
+// 	return (ptr);
+// }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

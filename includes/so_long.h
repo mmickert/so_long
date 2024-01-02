@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:07:18 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/02 11:10:44 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/02 14:15:17 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ typedef struct
 
 int		main(int argc, char **argv);
 void	parse(char **argv, t_so_long *game);
-int		parse_map_shape(t_so_long *game);
-int		parse_map_components(t_so_long *game);
+int		check_map_shape(t_so_long *game);
+int		fill_map(t_so_long *game);
+void	allocate_map(t_so_long *game, char **argv, int line_length);
+int		check_map_components(t_so_long *game);
+
 
 #endif
