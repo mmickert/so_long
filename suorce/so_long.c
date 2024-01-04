@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:07:02 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/02 16:12:48 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/03 19:34:48 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int	main(int argc, char **argv)
 {
 	t_so_long	game;
 
+	game.E = 0;
+	game.C = 0;
+	game.P = 0;
 	ft_memset(&game, 0, sizeof(t_so_long));
 	if (argc != 2)
 	{
@@ -23,6 +26,7 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	parse(argv, &game);
+// ft_printf("reached C: %d, real C: %d", game.C_counter, game.C);
 	return (0);
 }
 
@@ -49,113 +53,32 @@ void	parse(char **argv, t_so_long *game)
 	check_map_shape(game);
 	game->line_counter = allocate_map(game, argv);
 	check_map_components(game);
+	flood_fill(game);
+	// find_all_Cs(game);
 }
 
-int	is_allowed_char(char c)
-{
-	return (c == '1' || c == '0' || c == 'C' || c == 'P' || c == 'E' || (c >= 9
-			&& c <= 13) || c == 32);
-}
-
-int	check_map_components(t_so_long *game)
+void	error(t_so_long *game, int flag)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	while (game->map[i] != NULL)
+	if (flag == 24)
+		ft_putstr_fd("Error\nInvalid character found in the map.\n", 2);
+	else if (flag == 23)
+		ft_putstr_fd("Error\nMap is not rectangular.\n", 2);
+	else if (flag == 22)
+		ft_putstr_fd("Error\nMap not surrounded by walls.\n", 2);
+	else if (flag == 21)
+		ft_putstr_fd("Error\nInvalid Player/Exit count.\n", 2);
+	else if (flag == 20)
+		ft_putstr_fd("Error\nP cannot reach E.\n", 2);
+	else if (flag == 19)
+		ft_putstr_fd("Error\nC not reachable.\n", 2);
+	while (i < game->line_counter && game->map[i])
 	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (!is_allowed_char(game->map[i][j]))
-			{
-				ft_printf("Error\nInvalid character found in the map.\n");
-				exit(1);
-			}
-			j++;
-		}
+		free(game->map[i]);
 		i++;
 	}
-ft_printf("linelength: %d\n", game->line_length);
-ft_printf("linecount: %d\n", game->line_counter);
-	return (0);
+	free(game->map);
+	exit(EXIT_FAILURE);
 }
-
-int	allocate_map(t_so_long *game, char **argv)
-{
-	game->fd = open(argv[1], O_RDONLY);
-	if (game->fd == -1)
-	{
-		ft_putstr_fd("Error\nInvalid file path.\n", 2);
-		exit(EXIT_FAILURE);
-	}
-	game->map = (char **)ft_calloc(game->line_length, sizeof(char *));
-	if (game->map == NULL)
-	{
-		ft_putstr_fd("Error\nMemory allocation error.\n", 2);
-		exit(EXIT_FAILURE);
-	}
-	game->line_counter = fill_map(game);
-	return (game->line_counter);
-}
-
-int	fill_map(t_so_long *game)
-{
-	char	*line;
-	int		i;
-
-	game->line_counter = 0;
-	i = 0;
-	while (1)
-	{
-		line = get_next_line(game->fd);
-		if (line == NULL)
-			break ;
-		game->line_counter++;
-		game->map[i] = ft_strdup(line);
-		free(line);
-		if (game->map[i] == NULL)
-		{
-			ft_putstr_fd("Error\nMemory allocation error.\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		i++;
-	}
-	return (game->line_counter);
-}
-
-int	check_map_shape(t_so_long *game)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (1)
-	{
-		game->line_length = i;
-		line = get_next_line(game->fd);
-		if (line == NULL)
-			break ;
-		i = 0;
-		while (line[i])
-			i++;
-		if (i > 0 && line[i - 1] == '\n')
-			i--;
-		if (game->line_length == 0)
-			game->line_length = i;
-		free(line);
-		if (game->line_length != i
-			&& (ft_putstr_fd("Error\nMap is not rectangular.\n", 2), 1))
-			exit(1);
-	}
-	return (close(game->fd), game->line_length);
-}
-
-/*next steps:
-- are the walls all 1s? (using line count and length)
-- are there only one E and P?
-- how many Cs?
-- floodfill - erf - can p reach e?
-- are all the Cs reachable? (how many cs can p reach, is that the same as c number?)
-*/

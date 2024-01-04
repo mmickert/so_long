@@ -6,7 +6,7 @@
 #    By: mickert <mickert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/30 13:07:09 by mickert           #+#    #+#              #
-#    Updated: 2024/01/02 11:36:41 by mickert          ###   ########.fr        #
+#    Updated: 2024/01/03 18:07:47 by mickert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 CFLAGS = -g -fsanitize=address -Wunreachable-code
 
-SRC = suorce/so_long.c
+SRC = suorce/so_long.c suorce/floodfill.c suorce/parse_map.c suorce/PEC.c
 
 ODIR = ./obj
 OBJ = $(SRC:suorce/%.c=$(ODIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:30:49 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/01 16:10:29 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/03 13:31:17 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-#include "get_next_line.h"
-
+# include "get_next_line.h"
 
 # define TRUE 1
 # define FALSE 0
