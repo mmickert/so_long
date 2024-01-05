@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:07:18 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/04 11:58:58 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/05 18:09:02 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include "../suorce/libft/libft.h"
+# include "../minilibx/mlx.h"
 
 typedef struct
 {
@@ -34,6 +35,13 @@ typedef struct
 	int		P_position_counter;
 	int		C_counter;
 	int		E_reachable;
+	void	*minilib;
+	void	*window;
+	void	*island;
+	void	*fish;
+	void	*ocean;
+	void	*rocket;
+	void	*dolphin;
 
 }	t_so_long;
 
@@ -51,5 +59,9 @@ void	positions_PEC(t_so_long *game, int i, int y);
 void	flood_fill(t_so_long *game);
 int		flood_fill_recursive(t_so_long *game, int start_length, int start_counter,
 		int filled[][game->line_counter]);
+void 	minilib(t_so_long *game);
+void	fill_graphics(t_so_long *game);
+void	fill_window(t_so_long *game);
+void		set_map_to_PEC(t_so_long *game, int x, int y);
 
 #endif

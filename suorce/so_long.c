@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:07:02 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/03 19:34:48 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:51:40 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	parse(argv, &game);
-// ft_printf("reached C: %d, real C: %d", game.C_counter, game.C);
+	minilib(&game);
 	return (0);
 }
 
@@ -54,7 +54,6 @@ void	parse(char **argv, t_so_long *game)
 	game->line_counter = allocate_map(game, argv);
 	check_map_components(game);
 	flood_fill(game);
-	// find_all_Cs(game);
 }
 
 void	error(t_so_long *game, int flag)
@@ -82,3 +81,9 @@ void	error(t_so_long *game, int flag)
 	free(game->map);
 	exit(EXIT_FAILURE);
 }
+
+/* steps:
+understand minilibx
+get graphics and fill the mlx with graphics
+open window
+*/
