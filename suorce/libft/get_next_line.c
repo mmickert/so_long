@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:53:06 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/01 16:16:03 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/07 14:25:08 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_line(char **new_buffer)
 		i++;
 	}
 	line = ft_substr(*new_buffer, 0, i + 1);
-	new_buffer_len = ft_strlen(*new_buffer) - i;
+	new_buffer_len = ft_strlen_gnl(*new_buffer) - i;
 	temp = ft_substr(*new_buffer, i + 1, new_buffer_len);
 	if (!line || !temp)
 		return (free(line), free(temp), NULL);

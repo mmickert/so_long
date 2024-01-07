@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 18:02:43 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/03 18:10:59 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/07 15:45:02 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	check_map_walls(t_so_long *game)
 	int	y;
 
 	i = 0;
+	if (game->map[0][0] == '\n')
+		error(game, 25);
 	while (game->map[0][i] == '1')
 		i++;
 	if (i != game->line_length)
@@ -105,32 +107,4 @@ void	check_map_walls(t_so_long *game)
 		i++;
 	if (i != game->line_length)
 		error(game, 22);
-}
-
-int	is_allowed_char(char c)
-{
-	return (c == '1' || c == '0' || c == 'C' || c == 'P' || c == 'E' || (c >= 9
-			&& c <= 13) || c == 32);
-}
-
-int	check_map_components(t_so_long *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map[i] != NULL)
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (!is_allowed_char(game->map[i][j]))
-				error(game, 24);
-			j++;
-		}
-		i++;
-	}
-	check_map_walls(game);
-	check_PEC(game);
-	return (0);
 }

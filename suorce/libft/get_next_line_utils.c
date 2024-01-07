@@ -6,13 +6,13 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:04:20 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/02 11:45:16 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/07 14:24:39 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_gnl(const char *str)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char			*star;
 	size_t			i;
 
-	strlen = ft_strlen(s);
+	strlen = ft_strlen_gnl(s);
 	if (start >= strlen)
 		return (ft_strdup_gnl("\0"));
 	if (strlen - start < len)
@@ -67,8 +67,8 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	s1len = ft_strlen(s1);
-	s2len = ft_strlen(s2);
+	s1len = ft_strlen_gnl(s1);
+	s2len = ft_strlen_gnl(s2);
 	if (!s1 || !s2)
 		return (s2);
 	joinedstr = (char *)ft_calloc((s1len + s2len + 1), sizeof(char));

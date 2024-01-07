@@ -6,7 +6,7 @@
 /*   By: mickert <mickert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:07:02 by mickert           #+#    #+#             */
-/*   Updated: 2024/01/05 16:51:40 by mickert          ###   ########.fr       */
+/*   Updated: 2024/01/07 13:58:50 by mickert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ int	main(int argc, char **argv)
 {
 	t_so_long	game;
 
-	game.E = 0;
-	game.C = 0;
-	game.P = 0;
+	game.e = 0;
+	game.c = 0;
+	game.p = 0;
+	game.move_counter = 0;
+	game.c_collected = 0;
 	ft_memset(&game, 0, sizeof(t_so_long));
 	if (argc != 2)
 	{
@@ -61,7 +63,9 @@ void	error(t_so_long *game, int flag)
 	int	i;
 
 	i = 0;
-	if (flag == 24)
+	if (flag == 25)
+		ft_putstr_fd("Error\nInvalid map.\n", 2);
+	else if (flag == 24)
 		ft_putstr_fd("Error\nInvalid character found in the map.\n", 2);
 	else if (flag == 23)
 		ft_putstr_fd("Error\nMap is not rectangular.\n", 2);
@@ -81,9 +85,3 @@ void	error(t_so_long *game, int flag)
 	free(game->map);
 	exit(EXIT_FAILURE);
 }
-
-/* steps:
-understand minilibx
-get graphics and fill the mlx with graphics
-open window
-*/

@@ -6,15 +6,15 @@
 #    By: mickert <mickert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/30 13:07:09 by mickert           #+#    #+#              #
-#    Updated: 2024/01/05 15:10:18 by mickert          ###   ########.fr        #
+#    Updated: 2024/01/06 18:41:11 by mickert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
-CFLAGS = -g -fsanitize=address -Wunreachable-code
+CFLAGS = -Wall -Wextra -Werror -g
+#CFLAGS = -g -fsanitize=address -Wunreachable-code
 
-SRC = suorce/so_long.c suorce/floodfill.c suorce/parse_map.c suorce/PEC.c suorce/minilib.c
+SRC = suorce/so_long.c suorce/floodfill.c suorce/parse_map.c suorce/map_utils.c suorce/pec.c suorce/minilib.c suorce/movements.c suorce/movements_utils.c
 
 ODIR = ./obj
 OBJ = $(SRC:suorce/%.c=$(ODIR)/%.o)
